@@ -8,9 +8,11 @@ apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 imageRepository: registry.aliyuncs.com/google_containers
 kubernetesVersion: v1.14.9
-#apiServer:
-#  certSANs:
-#  - 192.168.10.10
+apiServer:
+  certSANs:
+  - 192.168.10.10
+  advertise-address: 192.168.10.10
 controlPlaneEndpoint: "192.168.10.10:6443"
 networking:
   podSubnet: 10.244.0.0/16
+#kubeadm init --kubernetes-version=v1.14.9 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --apiserver-advertise-address=192.168.10.10 --image-repository=registry.aliyuncs.com/google_containers --ignore-preflight-errors=Swap
